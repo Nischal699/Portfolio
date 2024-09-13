@@ -4,19 +4,6 @@ from django.shortcuts import render
 #def aboutUS(request):
 #   return HttpResponse("WELCOME TO MY PAGE")
 
-def rough(request):
-    data={
-        'title':'Home-Page',
-        'name':'Nischal',
-        'numbers':[],
-        'course':['php','java','python'],
-        'student_details':[
-            {'name':'nischal','address':'kamalbinayak'},
-            {'name':'nehal','address':'nagarkot'}
-        ]
-    }
-    return render(request,"rough.html",data)
-
 def homePage(request):
     data={
         'title':'Home-Page',
@@ -24,33 +11,26 @@ def homePage(request):
     }
     return render(request,"index.html",data)
 
-def education(request):
+def about(request):
     data={
         'title':'Eduaction',
         'name':'Nischal'
     }
-    return render(request,"education.html",data)
+    return render(request,"about.html",data)
 
-def skills(request):
+def services(request):
     data={
         'title':'Contact',
         'name':'Nischal'
     }
-    return render(request,"skills.html",data)
+    return render(request,"services.html",data)
 
-def projects(request):
+def portfolio(request):
     data={
         'title':'Contact',
         'name':'Nischal'
     }
-    return render(request,"projects.html",data)
-
-def achievements(request):
-    data={
-        'title':'Contact',
-        'name':'Nischal'
-    }
-    return render(request,"achievements.html",data)
+    return render(request,"portfolio.html",data)
 
 def contact(request):
     data={

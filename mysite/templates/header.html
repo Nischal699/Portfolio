@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Portfolio</title>
-	<link rel="stylesheet" href="/static/css/style.css">
-	<link rel="icon" type="image/x-icon" href="pic4.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+    <link rel="stylesheet"
+  href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 </head>
-
 <body>
-	<div class="flex-container_nav">
-		<!-- Header  -->
-		<header>
-			<nav class="abc">
-				<ul>
-					<li class="{% if request.path == '/' %} active {% endif %}"><a href="{% url 'home' %}">HOME</a></li>
-					<li class="{% if request.path == '/education/' %} active {% endif %}"><a href="{% url 'education' %}">EDUCATION</a></li>
-					<li class="{% if request.path == '/skills/' %} active {% endif %}"><a href="{% url 'skills' %}">SKILLS</a></li>
-					<li class="{% if request.path == '/projects/' %} active {% endif %}"><a href="{% url 'projects' %}">PROJECTS</a></li>
-					<li class="{% if request.path == '/achievements/' %} active {% endif %}"><a href="{% url 'achievements' %}">ACHIEVEMENTS</a></li>
-					<li class="{% if request.path == '/contact/' %} active {% endif %}"><a href="{% url 'contact' %}">CONTACT :</a></li>
-				</ul>
-			</nav>
+    <!-----header------->
+    <header>
+        <a href="#" class="logo">Develo<span>pe</span>r..</a>
+        <ul class="navlist">
+            <li class="{% if request.path == '/' %} active {% endif %}"><a href="{% url 'home' %}" class="active">Home</a></li>
+            <li class="{% if request.path == '/about/' %} active {% endif %}"><a href="{% url 'about' %}">About Me</a></li>
+            <li class="{% if request.path == '/services/' %} active {% endif %}"><a href="{% url 'services' %}">Services</a></li>
+            <li class="{% if request.path == '/portfolio/' %} active {% endif %}"><a href="{% url 'portfolio' %}">Portfolio</a></li>
+            <li class="{% if request.path == '/contact/' %} active {% endif %}"><a href="{% url 'contact' %}">Contact</a></li>
+            <li class="{% if request.path == '/form/' %} active {% endif %}"><a href="{% url 'form' %}">Form</a></li>
 
-		</header>
+        </ul>
+        <div class="bx bx-menu" id="menu-icon"></div>
+    </header>
