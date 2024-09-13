@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>{{title}}</title>
+    </head>
+    <body>
+        <h1>WELCOME TO MY SITE,{{name}}</h1>
+        {% for n in course %}
+        <div>{{forloop.first}} {{n}}</div>
+        {% endfor %}
+
+        <br/>
+
+        <table border="1" cellpadding="10">
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+            </tr>
+            {% for d in student_details %}
+            <tr>
+                <td>{{d.name}}</td>
+                <td>{{d.address}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    {% if numbers|length > 0 %}
+
+        {% for a in numbers %}
+        {% if a > 20 %}
+        <div>{{a}}</div>
+        {% endif %}
+        {% endfor %}
+
+    {% else %}
+        No data found.
+
+    {% endif %}
+
+    </body>
+</html>

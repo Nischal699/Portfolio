@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form</title>
+  <link rel="stylesheet" href="/static/css/form.css">
+</head>
+
+<body >
+  <div class="apple">
+  <h1>
+    FORM VALIDATION
+  </h1>
+  THIS IS AN ENQUIRY FORM.
+  <h1 style="text-align: center;">HTML Form Design</h1>
+
+    <div class="container">
+    <!-- Starting Table -->
+
+    <table style="text-align:center">
+
+      <!-- Row 1 -->
+
+      <tr>
+        <th colspan="2">Student Basic Information</th>
+      </tr>
+
+      <!-- Row 2 -->
+
+      <tr>
+        <!-- Data 1 -->
+        <td>
+          <form>
+            <label>Name:</label>
+            <input type="text" name="num1" placeholder="Enter your name" required>
+          </form>
+        </td>
+        <!-- Data 2 -->
+        <td>
+          <form>
+
+            <label>Address:</label>
+            <input type="text" name="num2" placeholder="Enter your address">
+
+          </form>
+        </td>
+      </tr>
+
+      <!-- Row 3 -->
+
+      <tr>
+        <!-- Data 1 -->
+        <td>
+          <form>
+            <label>Gender:</label>
+            <input type="radio" value="">
+            <label>Male</label>
+            <input type="radio" value="">
+            <label>Female</label>
+          </form>
+        </td>
+        <!-- Data 2 -->
+        <td>
+          <form>
+            <label for="2">DOB:</label>
+            <input type="date">
+          </form>
+        </td>
+      </tr>
+
+<!-- Row 4 -->
+
+      <tr>
+        <!-- Data 1 -->
+        <td>
+          <form>
+            <label for="1">Mobile No:</label>
+            <input type="number" placeholder="Enter your number">
+          </form>
+        </td>
+        <!-- Data 2 -->
+        <td>
+          <form>
+            <label for="2">Applied Course:</label>
+            <select>
+              <option>BCA</option>
+              <option selected>BSC-CSIT</option>
+              <option>BIT</option>
+            </select>
+          </form>
+        </td>
+      </tr>
+
+
+<!-- Row 5 -->
+
+      <tr>
+        <!-- Data 1 -->
+        <td>
+          <form>
+            <label for="1">Area of Interest:</label><br>
+            <input type="checkbox" value="">
+            <label>Programming</label><br>
+            <input type="checkbox" value="">
+            <label>Gaming</label><br>
+            <input type="checkbox" value="">
+            <label>Designing</label><br>
+            <input type="checkbox" value="">
+            <label>Content Creator</label>
+          </form>
+        </td>
+        <!-- Data 2 -->
+        <td>
+          <form>
+            <label >About you:</label>
+            <textarea>
+
+
+              </textarea>
+          </form>
+        </td>
+      </tr>
+
+<!-- Row 6 -->
+
+      <tr>
+        <!-- Data 1 -->
+        <td colspan="2">
+          <form>
+            <button type="submit" value="submit" onclick="myfunction()">SUBMIT</button>
+          </form>
+        </td>
+        </th>
+      </tr>
+
+
+<!-- Table Closing -->
+
+<script>
+  function myFunction() {
+    alert("Your form is submitted! Thank you");
+  }
+  </script>
+
+    </table>
+</div>
+</div>
+</body>
+
+</html>

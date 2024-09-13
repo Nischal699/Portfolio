@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Portfolio</title>
+	<link rel="stylesheet" href="/static/css/style.css">
+	<link rel="icon" type="image/x-icon" href="pic4.jpg">
+</head>
+
+<body>
+	<div class="flex-container_nav">
+		<!-- Header  -->
+		<header>
+			<nav class="abc">
+				<ul>
+					<li class="{% if request.path == '/' %} active {% endif %}"><a href="{% url 'home' %}">HOME</a></li>
+					<li class="{% if request.path == '/education/' %} active {% endif %}"><a href="{% url 'education' %}">EDUCATION</a></li>
+					<li class="{% if request.path == '/skills/' %} active {% endif %}"><a href="{% url 'skills' %}">SKILLS</a></li>
+					<li class="{% if request.path == '/projects/' %} active {% endif %}"><a href="{% url 'projects' %}">PROJECTS</a></li>
+					<li class="{% if request.path == '/achievements/' %} active {% endif %}"><a href="{% url 'achievements' %}">ACHIEVEMENTS</a></li>
+					<li class="{% if request.path == '/contact/' %} active {% endif %}"><a href="{% url 'contact' %}">CONTACT :</a></li>
+				</ul>
+			</nav>
+
+		</header>
