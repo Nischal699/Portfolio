@@ -20,8 +20,11 @@
             <li class="{% if request.path == '/services/' %} active {% endif %}"><a href="{% url 'services' %}">Services</a></li>
             <li class="{% if request.path == '/portfolio/' %} active {% endif %}"><a href="{% url 'portfolio' %}">Portfolio</a></li>
             <li class="{% if request.path == '/contact/' %} active {% endif %}"><a href="{% url 'contact' %}">Contact</a></li>
-            <li class="{% if request.path == '/form/' %} active {% endif %}"><a href="{% url 'form' %}">Form</a></li>
+            <li class="{% if request.path == '/login/' %} active {% endif %}"><a href="{% url 'login' %}">Login</a></li>
+            <li class="{% if request.path == '/information_form/' %} active {% endif %}"><a href="{% url 'information_form' %}">Form</a></li>
+
 
         </ul>
-        <div class="bx bx-menu" id="menu-icon"></div>
+        <div class="bx bx-menu" id="menu-icon">
+        </div>
     </header>

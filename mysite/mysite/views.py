@@ -39,21 +39,24 @@ def contact(request):
     }
     return render(request,"contact.html",data)
 
-def form(request):
+def login(request):
+    return render(request,"login.html")
+
+def information_form(request):
     name=0
-    address=0
+    data={}
     try:
+        if request.method=="POST":
         #n1=(request.GET['num1'])
         #n2=(request.GET['num2'])
-        
-        n1=request.GET.get('num1')
-        n2=request.GET.get('num2')
-        
-        name=n1
-        address=n2
-        
+          n1=request.POST.get('full_name')
+          name=n1
+          data={
+              'n1':n1,
+              'full_name':name
+          }
     except:
         pass
     
-    return render(request,"form.html",{'naame':name,'addr':address})
+    return render(request,"information_form.html",data)
 
