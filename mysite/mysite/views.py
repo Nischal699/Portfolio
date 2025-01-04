@@ -1,5 +1,6 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse,HttpResponseRedirect
+from django.shortcuts import render,redirect
+from .forms import UsersForm
 
 #def aboutUS(request):
 #   return HttpResponse("WELCOME TO MY PAGE")
@@ -12,11 +13,10 @@ def homePage(request):
     return render(request,"index.html",data)
 
 def about(request):
-    data={
-        'title':'Eduaction',
-        'name':'Nischal'
-    }
-    return render(request,"about.html",data)
+    if request.method=="GET":
+        output=request.GET.get('output')
+    
+    return render(request,"about.html",{'full_name':output})
 
 def services(request):
     data={
@@ -49,14 +49,22 @@ def information_form(request):
         if request.method=="POST":
         #n1=(request.GET['num1'])
         #n2=(request.GET['num2'])
-          n1=request.POST.get('full_name')
-          name=n1
+          name=request.POST.get('full_name')
           data={
-              'n1':n1,
               'full_name':name
           }
+          url="/about/?output={}".format(name)
+          
+          return redirect(url)
     except:
         pass
     
     return render(request,"information_form.html",data)
+
+def form(request):
+    fn=UsersForm()
+    name=0
+    data={'form':fn}
+    return render(request,"form.html",data)
+
 
