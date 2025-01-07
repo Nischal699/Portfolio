@@ -7,7 +7,7 @@ from service.models import Service
 #   return HttpResponse("WELCOME TO MY PAGE")
 
 def homePage(request):
-    servicesData=Service.objects.all()
+    servicesData=Service.objects.all().order_by('-service_title')
     #for a in servicesData:
     #    print(a.service_icon)
     #print(services)
