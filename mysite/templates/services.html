@@ -65,6 +65,8 @@
     
     </section>
 
+<!-- Pagination Concept -->
+
     <div class="center">
         <div class="pagination">
 
@@ -72,15 +74,14 @@
         <a href="/services/?page=1">First</a>
         <a href="/services/?page={{servicesData.previous_page_number}}">Previous</a>
         {% endif %}
-
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
+   
+        {% for n in totalPagelist %}
+        <a href="/services/?page={{n}}">{{n}}</a>
+        {% endfor %}
 
         {% if servicesData.has_next %}
-
         <a href="/services/?page={{servicesData.next_page_number}}">Next</a>
-
+        <a href="/services/?page={{lastpage}}">Last</a>
         {% endif %}
         
         </div>

@@ -46,7 +46,7 @@ def services(request):
     paginator=Paginator(servicesData,2)
     page_number=request.GET.get('page')
     serviceDatafinal=paginator.get_page(page_number)
-    
+    totalpage=serviceDatafinal.paginator.num_pages
     #searching process
     
     if request.method=="GET":
@@ -57,6 +57,8 @@ def services(request):
             
     data={
         'servicesData':serviceDatafinal,
+        'lastpage':totalpage,
+        'totalPagelist':[n+1 for n in range(totalpage)],
         'title':'Contact',
         'name':'Nischal'
     }
