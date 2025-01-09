@@ -7,7 +7,7 @@ from service.models import Service
 #   return HttpResponse("WELCOME TO MY PAGE")
 
 def homePage(request):
-    servicesData=Service.objects.all().order_by('-service_title')
+    servicesData=Service.objects.all().order_by('-service_title')[:2]#slicing limiting
     #for a in servicesData:
     #    print(a.service_icon)
     #print(services)
@@ -25,7 +25,9 @@ def about(request):
     return render(request,"about.html",{'full_name':output})
 
 def services(request):
+    servicesData=Service.objects.all().order_by('-service_title')
     data={
+        'servicesData':servicesData,
         'title':'Contact',
         'name':'Nischal'
     }

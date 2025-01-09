@@ -6,7 +6,28 @@
         <link rel="stylesheet" href="/static/css/style.css">
     </head>
     <body>
-        <h1>THIS IS EDUCATION DETAILS</h1>
+            
+    <!------------Services section------->
+    <section class="services" id="services">
+        <div class="main-text">
+            <h2><span>My</span>Services</h2>
+        </div>
+        <div class="services-content">
+    
+            {% for n in servicesData %}
+    
+            <div class="box">
+                <div class="s-icons">
+                    <i class='{{n.service_icon}}'></i>
+                </div>
+                <h3>{{n.service_title}}</h3>
+                <p>{{n.service_des}}</p>
+                <a href="#" class="btn">Read more</a>
+            </div>
+     
+            {% endfor %}
+    
+    </section>
     </body>
 </html>
 {% endblock %}
