@@ -3,6 +3,8 @@ from django.shortcuts import render,redirect
 from .forms import UsersForm
 from service.models import Service
 from news.models import News
+from django.core.paginator import Paginator
+
 
 #def aboutUS(request):
 #   return HttpResponse("WELCOME TO MY PAGE")
@@ -39,6 +41,12 @@ def about(request):
 def services(request):
     servicesData=Service.objects.all().order_by('-service_title')
     
+    #paging concept
+    
+    paginator=Paginator(servicesData,2)
+    page_number=request.GET.get('page')
+    serviceDatafinal=paginator.get_page(page_number)
+    
     #searching process
     
     if request.method=="GET":
@@ -48,7 +56,7 @@ def services(request):
            
             
     data={
-        'servicesData':servicesData,
+        'servicesData':serviceDatafinal,
         'title':'Contact',
         'name':'Nischal'
     }
