@@ -2,21 +2,33 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render,redirect
 from .forms import UsersForm
 from service.models import Service
+from news.models import News
 
 #def aboutUS(request):
 #   return HttpResponse("WELCOME TO MY PAGE")
 
 def homePage(request):
+    newsData=News.objects.all();
     servicesData=Service.objects.all().order_by('-service_title')[:2]#slicing limiting
+
     #for a in servicesData:
     #    print(a.service_icon)
     #print(services)
     data={
         'servicesData':servicesData,
+        'newsData':newsData,
         'title':'Home-Page',
         'name':'Nischal'
     }
     return render(request,"index.html",data)
+
+def newsDetails(request,newsid):
+    newsDetails=News.objects.get(id=newsid )
+    data={
+        'newsDetails':newsDetails
+    }
+    return render(request,"newsDetails.html",data)
+    
 
 def about(request):
     if request.method=="GET":
@@ -33,7 +45,7 @@ def services(request):
     }
     return render(request,"services.html",data)
 
-def portfolio(request):
+def portfolio(requests):
     data={
         'title':'Contact',
         'name':'Nischal'

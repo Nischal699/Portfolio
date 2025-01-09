@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<html>
+    <head>
+        <title>{{title}}</title>
+        <link rel="stylesheet" href="/static/css/style.css">
+    </head>
+    <body>
+
+
+        <section class="about" id="about">
+            <div class="about-img">
+                <img src="/static/images/1.jpg">
+            </div>
+    
+            <div class="about-text">
+                <h2>NEWS</span></h2>
+                <h4>{{newsDetails.news_title}}</h4>
+                <p>{{newsDetails.news_desc | safe}}</p>
+                <a href="{% url 'home' %}" class="btn">HOME</a>
+            </div>
+        </section>
+
+
+    </body>
+</html>
+{% endblock %}

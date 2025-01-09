@@ -22,7 +22,7 @@
 }
 
 body{
-    background: var(--bg-color);
+    background-color: var(--bg-color);
     color: var(--text-color);
 }
 header{
@@ -86,7 +86,18 @@ section{
     align-items: center;
     justify-content: flex-start;
 }
+/*
+marquee{
+    width: 100%;
+    height: 50px;
+    position: relative;
+    z-index: 999;
+    display: block;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 
+}
+    */
 .slide{
     margin-bottom: 20px;
 
