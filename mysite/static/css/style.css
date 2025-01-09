@@ -405,6 +405,7 @@ marquee{
     color: var(--text-color);
     font-size: 14px;
 }
+    
 .top i{
      padding: 10px;
      border-radius: 8px;
@@ -489,9 +490,11 @@ marquee{
 
 
 footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     background-color:var(--bg-color);
     color: antiquewhite;
     text-align: center;
-    padding: 40px 0;
-    position: sticky;
 }

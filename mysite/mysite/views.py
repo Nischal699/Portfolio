@@ -38,6 +38,15 @@ def about(request):
 
 def services(request):
     servicesData=Service.objects.all().order_by('-service_title')
+    
+    #searching process
+    
+    if request.method=="GET":
+        st=request.GET.get('servicename')
+        if st!=None:
+           servicesData=Service.objects.filter(service_title__icontains=st)
+           
+            
     data={
         'servicesData':servicesData,
         'title':'Contact',
@@ -45,7 +54,7 @@ def services(request):
     }
     return render(request,"services.html",data)
 
-def portfolio(requests):
+def portfolio(request):
     data={
         'title':'Contact',
         'name':'Nischal'

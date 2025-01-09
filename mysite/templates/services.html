@@ -6,12 +6,19 @@
         <link rel="stylesheet" href="/static/css/style.css">
     </head>
     <body>
-            
+
     <!------------Services section------->
     <section class="services" id="services">
         <div class="main-text">
             <h2><span>My</span>Services</h2>
         </div>
+
+    <!-- Searching the services-->
+
+        <form method="get">
+            <input type="text" name="servicename" value="" />
+            <input type="submit" value="Search"/>
+        </form>
         <div class="services-content">
     
             {% for n in servicesData %}
@@ -25,6 +32,8 @@
                 <a href="#" class="btn">Read more</a>
             </div>
      
+            {% empty %}
+            No Services Found
             {% endfor %}
     
     </section>
