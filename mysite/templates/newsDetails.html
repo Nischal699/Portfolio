@@ -10,7 +10,9 @@
 
         <section class="about" id="about">
             <div class="about-img">
-                <img src="/static/images/1.jpg">
+                {% if newsDetails.news_image != NULL %}
+                <img src="/media/{{newsDetails.news_image}}">
+                {% endif %}
             </div>
     
             <div class="about-text">
