@@ -27,13 +27,14 @@
         </div>
     </div>
     <div class="contact-form">
-        <form action="">
-         <input type="name" placeholder="Your Name" required>
-         <input type="email" placeholder="Your Email" required>
-         <input type="number" placeholder="Your Contact Number" required>
-         <textarea name="" id="" cols="35" rows="10"  placeholder="How can I help you,Sir?" required></textarea>
-         <input type="submit" value="Send Message" class="submit" required>
-
+        <form  method="post" action="{% url 'saveenquiry' %}">
+            {% csrf_token %}
+         <input type="name" name="name" placeholder="Your Name" required>
+         <input type="email" name="email" placeholder="Your Email" required>
+         <input type="number" name="phone" placeholder="Your Contact Number" required>
+         <textarea cols="35" rows="10" name="message" placeholder="How can I help you,Sir?" required></textarea>
+         <input type="submit" name="submit" class="submit" required>
+         {{n}}
 
         </form>
     </div>

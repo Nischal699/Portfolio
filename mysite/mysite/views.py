@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 from .forms import UsersForm
 from service.models import Service
 from news.models import News
+from contactenquiry.models import contactEnquiry
 from django.core.paginator import Paginator
 
 
@@ -63,6 +64,19 @@ def services(request):
         'name':'Nischal'
     }
     return render(request,"services.html",data)
+
+def saveEnquiry(request):
+    n=''
+    if request.method=="POST":
+        name=request.POST.get('name')
+        email=request.POST.get('email')
+        phone=request.POST.get('phone')
+        message=request.POST.get('message')
+        
+        en=contactEnquiry(name=name,email=email,phone=phone,message=message)
+        en.save()
+        n='Data Inserted'
+    return render(request,"contact.html")
 
 def portfolio(request):
     data={
