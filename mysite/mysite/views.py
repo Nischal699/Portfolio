@@ -5,12 +5,29 @@ from service.models import Service
 from news.models import News
 from contactenquiry.models import contactEnquiry
 from django.core.paginator import Paginator
+from django.core.mail import send_mail,EmailMultiAlternatives
 
 
 #def aboutUS(request):
 #   return HttpResponse("WELCOME TO MY PAGE")
 
 def homePage(request):
+    #subject='Testing Mail'
+    #from_email='xenobaka2@gmail.com'
+    #msg='<p>Welcome to <b>My website</b></p>'
+    #to='nischal123321@gmail.com'
+    #msg=EmailMultiAlternatives(subject,msg,from_email,[to])
+    #msg.content_subtype='html'
+    #msg.send()
+    
+    #send_mail(
+    #    'Testing Mail',
+    #   'Here is the message',
+    #   'xenobaka2@gmail.com',
+    #    ['nischal123321@gmail.com'],
+    #    fail_silently=False,
+    #)
+    
     newsData=News.objects.all();
     servicesData=Service.objects.all().order_by('-service_title')[:2]#slicing limiting
 
@@ -76,6 +93,15 @@ def saveEnquiry(request):
         en=contactEnquiry(name=name,email=email,phone=phone,message=message)
         en.save()
         n='Data Inserted'
+        
+        subject='Thanking You'
+        from_email='xenobaka2@gmail.com'
+        msg='<h1>Welcome to <b>My website</b></h1><p>Thank you for using my website<p>'
+        to='nischal123321@gmail.com'
+        msg=EmailMultiAlternatives(subject,msg,from_email,[to])
+        msg.content_subtype='html'
+        msg.send()
+        
     return render(request,"contact.html")
 
 def portfolio(request):
