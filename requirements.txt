@@ -8,3 +8,5 @@ sqlparse==0.5.1
 tzdata==2025.2
 
 whitenoise==6.9.0 # Added for static file serving
+
+python-dotenv==1.1.1 # Added for environment variable management
