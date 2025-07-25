@@ -18,3 +18,5 @@ def create_superuser(sender, **kwargs):
             User.objects.create_superuser(username=username, email=email, password=password)
         else:
             print("⚠️ Superuser already exists or username not provided.")
+    # At the end of your signal or post_migrate handler
+    print("🧪 Existing superusers:", User.objects.filter(is_superuser=True))

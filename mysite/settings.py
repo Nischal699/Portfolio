@@ -143,5 +143,3 @@ EMAIL_PORT=587
 EMAIL_HOST_USER='xenobaka2@gmail.com'
 EMAIL_HOST_PASSWORD='qyypewdhzscwygze'
 EMAIL_USE_TLS=True
-
-print("🧪 Existing superusers:", User.objects.filter(is_superuser=True))
