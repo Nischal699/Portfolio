@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!---Coding By CodingLab | www.codinglabweb.com--->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!--<title>Registration Form in HTML CSS</title>-->
+    <!---Custom CSS File--->
+  </head>
+  <body>
+    <section class="container">
+      <header>Registration Form</header>
+      <form action="" method="post" class="form">
+        {% csrf_token %}
+        {{form}}
+        <button>Submit</button>
+      </form>
+    </section>

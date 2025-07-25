@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<html>
+    <head>
+        <title>{{title}}</title>
+        <link rel="stylesheet" href="/static/css/style.css">
+    </head>
+    <body>
+        <!---------------Contact Section---------->
+
+<section class="contact" id="contact">
+    <div class="contact-text">
+        <h2>Contact<span>Me!</span></h2>
+        <h4>If you have any project in your mind.</h4>
+        <p>I am a website designer, creating bold and brave interface design for companies all across the world.</p>
+        <div class="list">
+            <li><a href="#">0123456789</a></li>
+            <li><a href="#">nischal123321@gmail.com</a></li>
+            <li><a href="#">[like share & subscribe]</a></li>
+
+        </div>
+        <div class="contact-icons">
+            <a href="#" ><i class='bx bxl-facebook'></i></a>
+            <a href="#" ><i class='bx bxl-twitter'></i></a>
+            <a href="#" ><i class='bx bxl-instagram'></i></a>
+            <a href="#" ><i class='bx bxl-youtube'></i></a>
+        </div>
+    </div>
+    <div class="contact-form">
+        <form  method="post" action="{% url 'saveenquiry' %}">
+            {% csrf_token %}
+         <input type="name" name="name" placeholder="Your Name" required>
+         <input type="email" name="email" placeholder="Your Email" required>
+         <input type="number" name="phone" placeholder="Your Contact Number" required>
+         <textarea cols="35" rows="10" name="message" placeholder="How can I help you,Sir?" required></textarea>
+         <input type="submit" name="submit" class="submit" required>
+         {{n}}
+
+        </form>
+    </div>
+</section>
+
+    </body>
+</html>
+{% endblock %}

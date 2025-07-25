@@ -1,0 +1,10 @@
+asgiref==3.8.1
+Django==5.2.4
+django-autoslug==1.9.9 # Added for automatic slug generation
+django-tinymce==4.1.0 # Added for rich text editing
+gunicorn==23.0.0 # Added for production server
+packaging==25.0 # Added for packaging utilities
+sqlparse==0.5.1
+tzdata==2025.2
+
+whitenoise==6.9.0 # Added for static file serving
