@@ -2,35 +2,71 @@
 {% block content %}
 <html>
     <head>
-        <title>{{title}}</title>
+        <title>{{ title }}</title>
         <link rel="stylesheet" href="/static/css/style.css">
         <style>
             .center {
-              text-align: center;
+                text-align: center;
             }
-            
+
             .pagination {
-              display: inline-block;
+                display: inline-block;
             }
-            
+
             .pagination a {
-              color: white;
-              float: left;
-              padding: 8px 16px;
-              text-decoration: none;
-              transition: background-color .3s;
-              border: 1px solid #ddd;
-              margin: 0 4px;
+                color: white;
+                float: left;
+                padding: 8px 16px;
+                text-decoration: none;
+                transition: background-color 0.3s;
+                border: 1px solid #ddd;
+                margin: 0 4px;
+                border-radius: 4px;
             }
-            
+
             .pagination a.active {
-              background-color:#05b4ff;
-              color: black;
-              border: 1px solid #05b4ff;
+                background-color: #05b4ff;
+                color: black;
+                border: 1px solid #05b4ff;
             }
-            
-            .pagination a:hover:not(.active) {background-color: #ddd;}
-            </style>
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+                color: black;
+            }
+
+            /* Search Bar Styling */
+            form {
+                display: flex;
+                justify-content: center;
+                margin: 20px 0;
+            }
+
+            form input[type="text"] {
+                padding: 10px;
+                width: 250px;
+                border-radius: 6px 0 0 6px;
+                border: 1px solid #ccc;
+                outline: none;
+            }
+
+            form input[type="submit"] {
+                padding: 10px 20px;
+                background: linear-gradient(to right, #00c6ff, #0072ff);
+                color: white;
+                border: none;
+                border-radius: 0 6px 6px 0;
+                font-weight: 600;
+                cursor: pointer;
+                transition: 0.3s ease;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            }
+
+            form input[type="submit"]:hover {
+                background: linear-gradient(to right, #0072ff, #00c6ff);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+        </style>
     </head>
     <body>
 
@@ -40,52 +76,46 @@
             <h2><span>My</span>Services</h2>
         </div>
 
-    <!-- Searching the services-->
-
+        <!-- Searching the services -->
         <form method="get">
-            <input type="text" name="servicename" value="" />
-            <input type="submit" value="Search"/>
+            <input type="text" name="servicename" value="{{ request.GET.servicename }}">
+            <input type="submit" value="Search">
         </form>
+
         <div class="services-content">
-    
             {% for n in servicesData %}
-    
             <div class="box">
                 <div class="s-icons">
-                    <i class='{{n.service_icon}}'></i>
+                    <i class='{{ n.service_icon }}'></i>
                 </div>
-                <h3>{{n.service_title}}</h3>
-                <p>{{n.service_des}}</p>
+                <h3>{{ n.service_title }}</h3>
+                <p>{{ n.service_des }}</p>
                 <a href="#" class="btn">Read more</a>
             </div>
-     
             {% empty %}
-            No Services Found
+            <div>No Services Found</div>
             {% endfor %}
-    
+        </div>
     </section>
 
-<!-- Pagination Concept -->
-
+    <!-- Pagination Concept -->
     <div class="center">
         <div class="pagination">
+            {% if servicesData.has_previous %}
+            <a href="/services/?page=1">First</a>
+            <a href="/services/?page={{ servicesData.previous_page_number }}">Previous</a>
+            {% endif %}
 
-        {% if servicesData.has_previous %}
-        <a href="/services/?page=1">First</a>
-        <a href="/services/?page={{servicesData.previous_page_number}}">Previous</a>
-        {% endif %}
-   
-        {% for n in totalPagelist %}
-        <a href="/services/?page={{n}}">{{n}}</a>
-        {% endfor %}
+            {% for n in totalPagelist %}
+            <a href="/services/?page={{ n }}" class="{% if servicesData.number == n %}active{% endif %}">{{ n }}</a>
+            {% endfor %}
 
-        {% if servicesData.has_next %}
-        <a href="/services/?page={{servicesData.next_page_number}}">Next</a>
-        <a href="/services/?page={{lastpage}}">Last</a>
-        {% endif %}
-        
+            {% if servicesData.has_next %}
+            <a href="/services/?page={{ servicesData.next_page_number }}">Next</a>
+            <a href="/services/?page={{ lastpage }}">Last</a>
+            {% endif %}
         </div>
-      </div>
+    </div>
     </body>
 </html>
 {% endblock %}

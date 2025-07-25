@@ -1,12 +1,23 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
-<html>
-    <head>
-        <title>{{title}}</title>
-        <link rel="stylesheet" href="/static/css/style.css">
-    </head>
-    <body>
-        <h1>THIS IS {{full_name}} ACHIEVEMENTS DETAILS</h1>
-    </body>
-</html>
+<!-----------About Section--------->
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="/static/images/1.jpg">
+        </div>
+
+        <div class="about-text">
+            <h2>About <span>Me</span></h2>
+            <h4>Website Designer</h4>
+            <p>Hi, I'm Nischal, a passionate developer with expertise in web development and mobile app development. With a strong foundation in languages like Python, Java and experience working with frameworks like [React, Django, Node.js, etc.], I thrive on building innovative and scalable solutions that drive results.
+
+                Over the past 2 years, I've worked on a wide range of projects, from creating user-friendly websites and applications to implementing complex back-end systems. My problem-solving skills and attention to detail help me turn ideas into functional, reliable code.
+                
+                I enjoy collaborating with teams, whether in a startup environment or large-scale projects, and I’m always eager to learn new technologies and improve my skills. When I’m not coding, you can find me.
+                
+                Let's build something amazing together!</p>
+            <a href="#" class="btn">More About</a>
+        </div>
+    </section>
 {% endblock %}

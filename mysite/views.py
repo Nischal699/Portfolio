@@ -61,7 +61,7 @@ def services(request):
     
     #paging concept
     
-    paginator=Paginator(servicesData,2)
+    paginator=Paginator(servicesData,4)
     page_number=request.GET.get('page')
     serviceDatafinal=paginator.get_page(page_number)
     totalpage=serviceDatafinal.paginator.num_pages
@@ -104,12 +104,12 @@ def saveEnquiry(request):
         
     return render(request,"contact.html")
 
-def portfolio(request):
+def projects(request):
     data={
         'title':'Contact',
         'name':'Nischal'
     }
-    return render(request,"portfolio.html",data)
+    return render(request,"projects.html",data)
 
 def contact(request):
     data={
