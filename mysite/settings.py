@@ -151,11 +151,22 @@ EMAIL_USE_TLS=True
 # Create a superuser if the environment variable is set
 from django.contrib.auth import get_user_model
 
-if os.getenv('CREATE_SUPERUSER') == 'True':
+if os.getenv("CREATE_SUPERUSER") == "True":
+    from django.contrib.auth import get_user_model
     User = get_user_model()
-    username = os.getenv('DJANGO_SUPERUSER_USERNAME', 'admin')
-    email = os.getenv('DJANGO_SUPERUSER_EMAIL', 'admin@example.com')
-    password = os.getenv('DJANGO_SUPERUSER_PASSWORD', 'admin123')
 
-    if not User.objects.filter(username=username).exists():
+    username = os.getenv("DJANGO_SUPERUSER_USERNAME")
+    email = os.getenv("DJANGO_SUPERUSER_EMAIL")
+    password = os.getenv("DJANGO_SUPERUSER_PASSWORD")
+
+    if username and not User.objects.filter(username=username).exists():
+        print("✅ Creating superuser...")
         User.objects.create_superuser(username=username, email=email, password=password)
+    else:
+        print("⚠️ Superuser already exists or username not provided.")
+
+
+# Print existing superusers for verification
+from django.contrib.auth import get_user_model
+User = get_user_model()
+print("🧪 Existing superusers:", User.objects.filter(is_superuser=True))
