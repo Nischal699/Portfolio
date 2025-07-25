@@ -1,5 +1,6 @@
 asgiref==3.8.1
-django>=5.1.10
+Django==5.2.4
+django-autoslug==1.9.9
+django-tinymce==4.1.0
 sqlparse==0.5.1
-django-tinymce
-django-autoslug
+tzdata==2025.2
