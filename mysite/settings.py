@@ -24,14 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-i0cv!3)7-pw1&5ako58k9kfcxb4*a-r=pz9&*s^65&r1p7r_gv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
 # Allowed hosts
 # Set this to your domain or IP address in production
-from dotenv import load_dotenv
-load_dotenv()
-DEBUG = os.getenv("DEBUG", "False") == "True"
-SECRET_KEY = os.getenv("SECRET_KEY", "unsafe-key")
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1").split(",")
 
 # Application definition
@@ -47,6 +43,7 @@ INSTALLED_APPS = [
     'tinymce',
     'news',
     'contactenquiry',
+    'core',  # Ensure core app is included
 ]
 
 MIDDLEWARE = [
@@ -147,26 +144,4 @@ EMAIL_HOST_USER='xenobaka2@gmail.com'
 EMAIL_HOST_PASSWORD='qyypewdhzscwygze'
 EMAIL_USE_TLS=True
 
-
-# Create a superuser if the environment variable is set
-from django.contrib.auth import get_user_model
-
-if os.getenv("CREATE_SUPERUSER") == "True":
-    from django.contrib.auth import get_user_model
-    User = get_user_model()
-
-    username = os.getenv("DJANGO_SUPERUSER_USERNAME")
-    email = os.getenv("DJANGO_SUPERUSER_EMAIL")
-    password = os.getenv("DJANGO_SUPERUSER_PASSWORD")
-
-    if username and not User.objects.filter(username=username).exists():
-        print("✅ Creating superuser...")
-        User.objects.create_superuser(username=username, email=email, password=password)
-    else:
-        print("⚠️ Superuser already exists or username not provided.")
-
-
-# Print existing superusers for verification
-from django.contrib.auth import get_user_model
-User = get_user_model()
 print("🧪 Existing superusers:", User.objects.filter(is_superuser=True))
