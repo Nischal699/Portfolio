@@ -6,7 +6,7 @@ gunicorn==23.0.0 # Added for production server
 packaging==25.0 # Added for packaging utilities
 sqlparse==0.5.1
 tzdata==2025.2
-Psycopg2-binary
+
 whitenoise==6.9.0 # Added for static file serving
 
 python-dotenv==1.1.1 # Added for environment variable management
