@@ -1,5 +1,7 @@
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render,redirect
+
+from project.models import Project
 from .forms import UsersForm
 from service.models import Service
 from news.models import News
@@ -104,13 +106,6 @@ def saveEnquiry(request):
         
     return render(request,"contact.html")
 
-def projects(request):
-    data={
-        'title':'Contact',
-        'name':'Nischal'
-    }
-    return render(request,"projects.html",data)
-
 def contact(request):
     data={
         'title':'Contact',
@@ -146,4 +141,28 @@ def form(request):
     data={'form':fn}
     return render(request,"form.html",data)
 
+
+def projects(request):
+    projectdata=Project.objects.all().order_by('-name')
+    
+    #paging concept
+    
+    paginator=Paginator(projectdata,4)
+    page_number=request.GET.get('page')
+    projectDatafinal=paginator.get_page(page_number)
+    totalpage=projectDatafinal.paginator.num_pages
+    #searching process
+    
+    if request.method=="GET":
+        st=request.GET.get('-name')
+        if st!=None:
+           projectdata=Project.objects.filter(name__icontains=st)
+           
+            
+    data={
+        'projectData':projectDatafinal,
+        'lastpage':totalpage,
+        'totalPagelist':[n+1 for n in range(totalpage)]
+    }
+    return render(request,"projects.html",data)
 

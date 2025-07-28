@@ -1,66 +1,131 @@
 {% extends "base.html" %}
 {% block content %}
+
+<html>
+    <head>
+        <title>{{ title }}</title>
+        <link rel="stylesheet" href="/static/css/style.css">
+        <style>
+            .center {
+                text-align: center;
+            }
+
+            .pagination {
+                display: inline-block;
+            }
+
+            .pagination a {
+                color: white;
+                float: left;
+                padding: 8px 16px;
+                text-decoration: none;
+                transition: background-color 0.3s;
+                border: 1px solid #ddd;
+                margin: 0 4px;
+                border-radius: 4px;
+            }
+
+            .pagination a.active {
+                background-color: #05b4ff;
+                color: black;
+                border: 1px solid #05b4ff;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+                color: black;
+            }
+
+            /* Search Bar Styling */
+            form {
+                display: flex;
+                justify-content: center;
+                margin: 20px 0;
+            }
+
+            form input[type="text"] {
+                padding: 10px;
+                width: 250px;
+                border-radius: 6px 0 0 6px;
+                border: 1px solid #ccc;
+                outline: none;
+            }
+
+            form input[type="submit"] {
+                padding: 10px 20px;
+                background: linear-gradient(to right, #00c6ff, #0072ff);
+                color: white;
+                border: none;
+                border-radius: 0 6px 6px 0;
+                font-weight: 600;
+                cursor: pointer;
+                transition: 0.3s ease;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            }
+
+            form input[type="submit"]:hover {
+                background: linear-gradient(to right, #0072ff, #00c6ff);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+        </style>
+    </head>
+    <body>
+
+        
 <!------------Portfolio-------------->
 <section class="portfolio" id="portfolio">
     <div class="main-text">
         <h2><span>Latest</span>Project</h2>
     </div>
+
+    <!-- Searching the projects -->
+        <form method="get">
+            <input type="text" name="name" value="{{ request.GET.name }}">
+            <input type="submit" value="Search">
+        </form>
+
+    
     <div class="portfolio-content">
-        <div class="row">
-            <img src="/static/images/9.jpg">
-            <div class="layer">
-                <h5>Visual Design</h5>
-                <p>Check out 10 best Design's Update for the web design and development companies.</p>
-                <a href="#"><i class='bx bx-link-external'></i></a>
-            </div>
-        </div>
-
-        <div class="row">
-            <img src="/static/images/4.jpg">
-            <div class="layer">
-                <h5>Visual Design</h5>
-                <p>Check out 10 best Design's Update for the web design and development companies.</p>
-                <a href="#"><i class='bx bx-link-external'></i></a>
-            </div>
-        </div>
-
-        <div class="row">
-            <img src="/static/images/5.jpg">
-            <div class="layer">
-                <h5>Visual Design</h5>
-                <p>Check out 10 best Design's Update for the web design and development companies.</p>
-                <a href="#"><i class='bx bx-link-external'></i></a>
-            </div>
-        </div>
-
-        <div class="row">
-            <img src="/static/images/6.jpg">
-            <div class="layer">
-                <h5>Visual Design</h5>
-                <p>Check out 10 best Design's Update for the web design and development companies.</p>
-                <a href="#"><i class='bx bx-link-external'></i></a>
-            </div>
-        </div>
-
-        <div class="row">
-            <img src="/static/images/7.jpg">
-            <div class="layer">
-                <h5>Visual Design</h5>
-                <p>Check out 10 best Design's Update for the web design and development companies.</p>
-                <a href="#"><i class='bx bx-link-external'></i></a>
-            </div>
-        </div>
-
-        <div class="row">
-            <img src="/static/images/8.jpg">
-            <div class="layer">
-                <h5>Visual Design</h5>
-                <p>Check out 10 best Design's Update for the web design and development companies.</p>
-                <a href="#"><i class='bx bx-link-external'></i></a>
-            </div>
-        </div>
-        
+        {% for project in projectData %}
+<div class="row">
+    {% if project.file %}
+        <img src="{{ project.file.url }}" alt="{{ project.name }}">
+    {% else %}
+        <img src="/static/images/default.jpg" alt="No image">
+    {% endif %}
+    <div class="layer">
+        <h5>{{ project.name }}</h5>
+        <p>{{ project.description|truncatechars:100 }}</p>
+        <a href="#"><i class='bx bx-link-external'></i></a>
     </div>
+</div>
+
+{% empty %}
+    <p>No projects found.</p>
+{% endfor %}
+
+
+     
 </section>
+<!-- Pagination Concept -->
+    <div class="center">
+        <div class="pagination">
+            {% if projectdata.has_previous %}
+            <a href="/projects/?page=1">First</a>
+            <a href="/projects/?page={{ projectdata.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            {% for n in totalPagelist %}
+            <a href="/projects/?page={{ n }}" class="{% if projectdata.number == n %}active{% endif %}">{{ n }}</a>
+            {% endfor %}
+
+            {% if projectdata.has_next %}
+            <a href="/projects/?page={{ projectdata.next_page_number }}">Next</a>
+            <a href="/projects/?page={{ lastpage }}">Last</a>
+            {% endif %}
+        </div>
+    </div>
+        </body>
+</html>
 
 {% endblock %}
