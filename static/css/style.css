@@ -420,16 +420,10 @@ marquee{
      color: var(--text-color);
      background: var(--main-color);
 }
-#menu-close {
-  display: none; /* hidden by default */
-  font-size: 32px;
-  color: var(--text-color);
-  cursor: pointer;
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 2000;
+.menu-toggle{
+    display: none;
 }
+
 @media (max-width: 1480px){
     header{
         padding: 12px 2.5%;
@@ -470,7 +464,7 @@ marquee{
     }
 }
 @media (max-width: 480px){
-    #menu-icon{
+    #menu-icon,#menu-close{
          display: none; /* show icon on small screens */
         font-size: 32px;
         color: var(--text-color);
@@ -510,15 +504,23 @@ marquee{
     }
 }
 @media (max-width: 768px) {
-    .menu-icon {
-        display: block;
-        z-index: 2000;
-        color: white;
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        cursor: pointer;
-    }
+    .menu-toggle {
+    display: block;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2000;
+  }
+    #menu-close,#menu-close{
+  display: none; /* hidden by default */
+  font-size: 32px;
+  color: var(--text-color);
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2000;
+}
     .navlist {
     background: var(--bg-color);
         backdrop-filter: blur(25px);
