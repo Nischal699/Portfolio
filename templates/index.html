@@ -52,6 +52,7 @@
 
 
     <!-----------About Section--------->
+    <!--
     <section class="about" id="about">
         <div class="about-img">
             <img src="/static/images/1.jpg">
@@ -69,11 +70,14 @@
                 Let's build something amazing together!</p>
             <a href="#" class="btn">More About</a>
         </div>
+      
     </section>
+    -->
 
     
     <!------------Services section------->
-    <section class="services" id="services">
+    <!--
+<section class="services" id="services">
     <div class="main-text">
         <h2><span>My</span>Services</h2>
     </div>
@@ -86,43 +90,19 @@
                 <i class='{{n.service_icon}}'></i>
             </div>
             <h3>{{n.service_title}}</h3>
-            <p>{{n.service_des | safe }}</p><!-- django templates filters and tag-->
+            <p>{{n.service_des | safe }}</p>
             <a href="#" class="btn">Read more</a>
         </div>
  
         {% endfor %}
-        <!--
-        <div class="box">
-            <div class="s-icons">
-                <i class='bx bx-code-alt'></i>
-            </div>
-            <h3>Creative Design</h3>
-            <p>One way to categorize the activities is in terms of the professional's area of experience such as competetive
-                    analysis,corporate strategy.
-            </p>
-            <a href="#" class="btn">Read more</a>
-        </div>
-
-        
-        <div class="box">
-            <div class="s-icons">
-                <i class='bx bx-edit-alt'></i>
-            </div>
-            <h3>Creatuve Design</h3>
-            <p>One way to categorize the activities is in terms of the professional's area of experience such as competetive
-                    analysis,corporate strategy.
-            </p>
-            <a href="#" class="btn">Read more</a>
-        </div>
     </div>
-     -->
-
-
-
+        
 </section>
+-->
 
 
 <!------------Portfolio-------------->
+<!--
 <section class="portfolio" id="portfolio">
     <div class="main-text">
         <h2><span>Latest</span>Project</h2>
@@ -184,9 +164,9 @@
         
     </div>
 </section>
-
+-->
 <!---------------Contact Section---------->
-
+<!--
 <section class="contact" id="contact">
     <div class="contact-text">
         <h2>Contact<span>Me!</span></h2>
@@ -217,6 +197,6 @@
         </form>
     </div>
 </section>
-
+-->
 
 {% endblock %}
