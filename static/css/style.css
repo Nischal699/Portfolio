@@ -463,46 +463,6 @@ marquee{
         grid-template-columns: 1fr;
     }
 }
-@media (max-width: 480px){
-    #menu-icon,#menu-close{
-         display: none; /* show icon on small screens */
-        font-size: 32px;
-        color: var(--text-color);
-        cursor: pointer;
-        position: fixed;   /* fix position so it's always visible */
-        top: 20px;
-        right: 20px;
-        z-index: 2000;/*hidden by default */
-    }
-    .navlist{
-        position: absolute;
-        top: -1000px;
-        right: 0;
-        left: 0;
-        display: flex;
-        flex-direction: column;
-        background: var(--bg-color);
-        text-align: left;
-        transition: all .45s ease;
-        z-index: 1000;
-    }
-    .navlist a{
-       display: block;
-       margin: 17px;
-       font-size: 20px;
-       transition: all .45s ease;
-       color: var(--text-color);
-    }
-    .navlist a:hover{
-        color: var(--main-color);
-    }
-    .navlist a.active{
-        color: var(--text-color);
-    }
-    .navlist .open{
-        top:100%;
-    }
-}
 @media (max-width: 768px) {
     .menu-toggle {
     display: block;
@@ -554,7 +514,62 @@ marquee{
         font-weight: 500;
     }
 }
+@media (max-width: 480px){
+    .menu-toggle {
+    display: block;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2000;
+  }
+    #menu-close,#menu-close{
+  display: none; /* hidden by default */
+  font-size: 32px;
+  color: var(--text-color);
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2000;
+}
+.navlist {
+    background: var(--bg-color);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+        border-left: 1px solid rgba(255, 255, 255, 0.15);
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 200px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 80px 30px;
+        z-index: 1000;
+        transition: right 0.3s ease;
+    }
+
+    .navlist.active {
+        right: 0;
+    }
+
+    .navlist li {
+        margin-bottom: 20px;
+    }
+
+    .navlist li a {
+        color: var(--text-color);
+        font-size: 20px;
+        font-weight: 500;
+    }
     
+}
+
+    
+
+
 
 
 
