@@ -98,7 +98,7 @@ def saveEnquiry(request):
         
         subject='Thanking You'
         from_email='xenobaka2@gmail.com'
-        msg='<h1>Welcome to <b>My website</b></h1><p>Thank you for using my website<p>'
+        msg='<h1>Welcome to <b>My website</b></h1><p>Thank you for using my website ! I have got your message and I will look for it .<p>'
         to='nischal123321@gmail.com'
         msg=EmailMultiAlternatives(subject,msg,from_email,[to])
         msg.content_subtype='html'
