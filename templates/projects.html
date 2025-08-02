@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-
+{% load static %}
 <html>
     <head>
         <title>{{ title }}</title>
@@ -91,7 +91,7 @@
     {% if project.file %}
         <img src="{{ project.file.url }}" alt="{{ project.name }}">
     {% else %}
-        <img src="{% static 'images/default.jpg' %}" alt="No image">
+        <img src="{% static 'images/default.png' %}" alt="No image">
     {% endif %}
     <div class="layer">
         <h5>{{ project.name }}</h5>
