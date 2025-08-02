@@ -1,131 +1,158 @@
 {% extends "base.html" %}
-{% block content %}
 {% load static %}
+{% block content %}
 <html>
-    <head>
-        <title>{{ title }}</title>
-        <link rel="stylesheet" href="/static/css/style.css">
-        <style>
-            .center {
-                text-align: center;
-            }
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
 
-            .pagination {
-                display: inline-block;
-            }
+        .row {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
 
-            .pagination a {
-                color: white;
-                float: left;
-                padding: 8px 16px;
-                text-decoration: none;
-                transition: background-color 0.3s;
-                border: 1px solid #ddd;
-                margin: 0 4px;
-                border-radius: 4px;
-            }
+        .row:hover {
+            transform: translateY(-5px);
+        }
 
-            .pagination a.active {
-                background-color: #05b4ff;
-                color: black;
-                border: 1px solid #05b4ff;
-            }
+        .row img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
 
-            .pagination a:hover:not(.active) {
-                background-color: #ddd;
-                color: black;
-            }
+        .layer {
+            padding: 40px;
+        }
 
-            /* Search Bar Styling */
-            form {
-                display: flex;
-                justify-content: center;
-                margin: 20px 0;
-            }
+        .layer h5 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            color: whitesmoke;
+        }
 
-            form input[type="text"] {
-                padding: 10px;
-                width: 250px;
-                border-radius: 6px 0 0 6px;
-                border: 1px solid #ccc;
-                outline: none;
-            }
+        .layer p {
+            font-size: 0.95rem;
+            color:white;
+        }
 
-            form input[type="submit"] {
-                padding: 10px 20px;
-                background: linear-gradient(to right, #00c6ff, #0072ff);
-                color: white;
-                border: none;
-                border-radius: 0 6px 6px 0;
-                font-weight: 600;
-                cursor: pointer;
-                transition: 0.3s ease;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-            }
+        .layer a {
+            margin-top: 10px;
+            display: inline-block;
+            color: whitesmoke;
+            font-weight: bold;
+            text-decoration: none;
+        }
 
-            form input[type="submit"]:hover {
-                background: linear-gradient(to right, #0072ff, #00c6ff);
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            }
-        </style>
-    </head>
-    <body>
+        .center {
+            text-align: center;
+            margin-top: 30px;
+        }
 
-        
-<!------------Portfolio-------------->
+        .pagination {
+            display: inline-block;
+        }
+
+        .pagination a {
+            color: #007bff;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            margin: 0 4px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .pagination a.active {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: #e9ecef;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        form input[type="text"] {
+            padding: 10px;
+            width: 260px;
+            border: 1px solid #ccc;
+            border-radius: 6px 0 0 6px;
+            outline: none;
+        }
+
+        form input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            background: #007bff;
+            color: white;
+            border-radius: 0 6px 6px 0;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        form input[type="submit"]:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
 <section class="portfolio" id="portfolio">
     <div class="main-text">
-        <h2><span>Latest</span>Project</h2>
+        <h2><span>Latest</span> Project</h2>
     </div>
 
-    <!-- Searching the projects -->
-        <form method="get">
-            <input type="text" name="name" value="{{ request.GET.name }}">
-            <input type="submit" value="Search">
-        </form>
+    <form method="get">
+        <input type="text" name="name" value="{{ request.GET.name }}">
+        <input type="submit" value="Search">
+    </form>
 
-    
     <div class="portfolio-content">
         {% for project in projectData %}
-<div class="row">
-    {% if project.file %}
-        <img src="{{ project.file.url }}" alt="{{ project.name }}">
-    {% else %}
-        <img src="{% static 'images/default.png' %}" alt="No image">
-    {% endif %}
-    <div class="layer">
-        <h5>{{ project.name }}</h5>
-        <p>{{ project.description|truncatechars:100 }}</p>
-        <a href="#"><i class='bx bx-link-external'></i></a>
+        <div class="row">
+            <img src="{% static 'images/default.jpg' %}" alt="{{ project.name }}">
+            <div class="layer">
+                <h5>{{ project.name }}</h5>
+                <p>{{ project.description|truncatechars:100 }}</p>
+                <a href="#"><i class='bx bx-link-external'></i> View</a>
+            </div>
+        </div>
+        {% empty %}
+            <p style="text-align:center;">No projects found.</p>
+        {% endfor %}
     </div>
-</div>
 
-{% empty %}
-    <p>No projects found.</p>
-{% endfor %}
-
-
-     
-</section>
-<!-- Pagination Concept -->
     <div class="center">
         <div class="pagination">
             {% if projectdata.has_previous %}
-            <a href="/projects/?page=1">First</a>
-            <a href="/projects/?page={{ projectdata.previous_page_number }}">Previous</a>
+            <a href="?page=1">First</a>
+            <a href="?page={{ projectdata.previous_page_number }}">Previous</a>
             {% endif %}
 
             {% for n in totalPagelist %}
-            <a href="/projects/?page={{ n }}" class="{% if projectdata.number == n %}active{% endif %}">{{ n }}</a>
+            <a href="?page={{ n }}" class="{% if projectdata.number == n %}active{% endif %}">{{ n }}</a>
             {% endfor %}
 
             {% if projectdata.has_next %}
-            <a href="/projects/?page={{ projectdata.next_page_number }}">Next</a>
-            <a href="/projects/?page={{ lastpage }}">Last</a>
+            <a href="?page={{ projectdata.next_page_number }}">Next</a>
+            <a href="?page={{ lastpage }}">Last</a>
             {% endif %}
         </div>
     </div>
-        </body>
-</html>
+</section>
 
+</body>
+</html>
 {% endblock %}
