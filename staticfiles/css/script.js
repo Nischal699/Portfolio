@@ -7,3 +7,8 @@ signUpBtnLink.addEventListener('click', () => {
 signInBtnLink.addEventListener('click', () => {
     wrapper.classList.toggle('active');
 });
+
+document.getElementById('scroll-to-top').addEventListener('click', function(e) {
+    e.preventDefault();  // prevent default anchor behavior
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
