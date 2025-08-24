@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <link rel="icon" href="{% static 'images/favicon.ico' %}">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 </head>
+
 <body>
     <!--<li class="{% if request.path == '/login/' %} active {% endif %}"><a href="{% url 'login' %}">Login</a></li>
             <li class="{% if request.path == '/information_form/' %} active {% endif %}"><a href="{% url 'information_form' %}">Form1</a></li>
@@ -17,40 +19,49 @@
 
     <!-----header------->
     <header>
-    <a href="#" class="logo">Develo<span>pe</span>r..</a>
-    <ul class="navlist" id="navlist">
-        <li class="{% if request.path == '/' %} active {% endif %}"><a href="{% url 'home' %}">Home</a></li>
-        <li class="{% if request.path == '/about/' %} active {% endif %}"><a href="{% url 'about' %}">About</a></li>
-        <li class="{% if request.path == '/services/' %} active {% endif %}"><a href="{% url 'services' %}">Services</a></li>
-        <li class="{% if request.path == '/projects/' %} active {% endif %}"><a href="{% url 'projects' %}">Projects</a></li>
-        <li class="{% if request.path == '/contact/' %} active {% endif %}"><a href="{% url 'contact' %}">Contact</a></li>
-    </ul>
-    <div class="menu-toggle">
-    <i class='bx bx-menu' id="menu-icon" ></i>
-    <i class='bx bx-x' id="menu-close" style="display: none;"></i>
-</div>
+        <a href="#" class="logo">Develo<span>pe</span>r..</a>
+        <ul class="navlist" id="navlist">
+    <li class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+        <a href="{% url 'home' %}">Home</a>
+    </li>
+    <li class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">
+        <a href="{% url 'about' %}">About</a>
+    </li>
+    <li class="{% if request.resolver_match.url_name == 'services' %}active{% endif %}">
+        <a href="{% url 'services' %}">Services</a>
+    </li>
+    <li class="{% if request.resolver_match.url_name == 'projects' %}active{% endif %}">
+        <a href="{% url 'projects' %}">Projects</a>
+    </li>
+    <li class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">
+        <a href="{% url 'contact' %}">Contact</a>
+    </li>
+</ul>
 
 
-</header>
-
-<script>
-    const menuIcon = document.getElementById('menu-icon');
-const menuClose = document.getElementById('menu-close');
-const navList = document.getElementById('navlist');
-
-menuIcon.onclick = () => {
-    navList.classList.add('active');
-    menuIcon.style.display = 'none';
-    menuClose.style.display = 'block';
-};
-
-menuClose.onclick = () => {
-    navList.classList.remove('active');
-    menuClose.style.display = 'none';
-    menuIcon.style.display = 'block';
-};
-
-</script>
+        <div class="menu-toggle">
+            <i class='bx bx-menu' id="menu-icon"></i>
+            <i class='bx bx-x' id="menu-close" style="display: none;"></i>
+        </div>
 
 
+    </header>
 
+    <script>
+        const menuIcon = document.getElementById('menu-icon');
+        const menuClose = document.getElementById('menu-close');
+        const navList = document.getElementById('navlist');
+
+        menuIcon.onclick = () => {
+            navList.classList.add('active');
+            menuIcon.style.display = 'none';
+            menuClose.style.display = 'block';
+        };
+
+        menuClose.onclick = () => {
+            navList.classList.remove('active');
+            menuClose.style.display = 'none';
+            menuIcon.style.display = 'block';
+        };
+
+    </script>

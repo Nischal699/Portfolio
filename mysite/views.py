@@ -1,3 +1,4 @@
+import os
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render,redirect
 
@@ -85,7 +86,6 @@ def services(request):
     return render(request,"services.html",data)
 
 from django.core.mail import EmailMultiAlternatives
-
 def saveEnquiry(request):
     n = ''
     if request.method == "POST":
@@ -99,14 +99,21 @@ def saveEnquiry(request):
         en.save()
         n = 'Data Inserted'
 
+        from_email = os.getenv("EMAIL_HOST_USER")  # your portfolio Gmail
+        to_self = [from_email]  # notification to you
+
         # -------------------
         # 1. Send notification to YOU
         # -------------------
         subject = f'New Contact Enquiry from {name}'
-        from_email = 'nischal123321@gmail.com'
-        msg = f"<h2>New enquiry received</h2><p><b>Name:</b> {name}</p><p><b>Email:</b> {email}</p><p><b>Phone:</b> {phone}</p><p><b>Message:</b> {message}</p>"
-
-        notify = EmailMultiAlternatives(subject, msg, from_email, ['your_email@gmail.com'])
+        msg = f"""
+        <h2>New enquiry received</h2>
+        <p><b>Name:</b> {name}</p>
+        <p><b>Email:</b> {email}</p>
+        <p><b>Phone:</b> {phone}</p>
+        <p><b>Message:</b> {message}</p>
+        """
+        notify = EmailMultiAlternatives(subject, msg, from_email, to_self, reply_to=[email])
         notify.content_subtype = 'html'
         notify.send()
 
@@ -114,14 +121,15 @@ def saveEnquiry(request):
         # 2. Send auto-reply to USER
         # -------------------
         subject_user = 'Thank you for contacting me!'
-        msg_user = "<h1>Welcome to <b>My website</b></h1><p>Thank you for your message! I will get back to you soon.</p>"
-
+        msg_user = """
+        <h1>Welcome to <b>My website</b></h1>
+        <p>Thank you for your message! I will get back to you soon.</p>
+        """
         reply = EmailMultiAlternatives(subject_user, msg_user, from_email, [email])
         reply.content_subtype = 'html'
         reply.send()
 
     return render(request, "contact.html", {'n': n})
-
 
 def contact(request):
     data={

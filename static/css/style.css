@@ -68,7 +68,7 @@ header {
 .navlist a:hover{
     color: var(--main-color);
 }
-.navlist a.active{
+.navlist li.active a{
     color: var(--main-color);
 }
 menu-icon{
