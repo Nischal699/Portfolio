@@ -5,82 +5,405 @@
         <title>{{ title }}</title>
         <link rel="stylesheet" href="/static/css/style.css">
         <style>
-            .center {
-                text-align: center;
+            .services {
+                position: relative;
+                overflow: hidden;
             }
 
-            .pagination {
+            .services::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: 
+                    linear-gradient(90deg, rgba(5, 180, 255, 0.02) 50%, transparent 50%),
+                    linear-gradient(rgba(5, 180, 255, 0.02) 50%, transparent 50%);
+                background-size: 25px 25px;
+                animation: servicesMatrix 30s linear infinite;
+                opacity: 0.2;
+            }
+
+            @keyframes servicesMatrix {
+                0% { transform: translate(-25px, -25px); }
+                100% { transform: translate(25px, 25px); }
+            }
+
+            .main-text {
+                position: relative;
+                z-index: 2;
+            }
+
+            .main-text h2 span {
+                color: var(--main-color);
+            }
+
+            /* Enhanced Search Form */
+            .search-container {
+                position: relative;
+                z-index: 2;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 3rem;
+            }
+
+            .search-form {
+                display: flex;
+                background: var(--bg-color);
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+                border: 1px solid rgba(5, 180, 255, 0.2);
+                transition: all 0.3s ease;
+            }
+
+            .search-form:hover {
+                border-color: var(--main-color);
+                box-shadow: 0 8px 30px rgba(5, 180, 255, 0.3);
+            }
+
+            .search-form input[type="text"] {
+                padding: 1rem 1.5rem;
+                width: 300px;
+                border: none;
+                background: transparent;
+                color: var(--text-color);
+                outline: none;
+                font-size: 1rem;
+                font-family: "Poppins", sans-serif;
+            }
+
+            .search-form input[type="text"]::placeholder {
+                color: var(--second-color);
+                opacity: 0.7;
+            }
+
+            .search-form input[type="submit"] {
+                padding: 1rem 2rem;
+                border: none;
+                background: var(--main-color);
+                color: var(--text-color);
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-weight: 600;
+                font-family: "Poppins", sans-serif;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .search-form input[type="submit"]::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                transition: left 0.5s;
+            }
+
+            .search-form input[type="submit"]:hover::before {
+                left: 100%;
+            }
+
+            .search-form input[type="submit"]:hover {
+                background: #0398d4;
+                transform: translateY(-1px);
+            }
+
+            /* Enhanced Services Content */
+            .services-content {
+                position: relative;
+                z-index: 2;
+            }
+
+            .box {
+                position: relative;
+                overflow: hidden;
+                border: 1px solid rgba(5, 180, 255, 0.1);
+                transition: all 0.45s ease;
+            }
+
+            .box::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, rgba(5, 180, 255, 0.05), transparent);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .box:hover::before {
+                opacity: 1;
+            }
+
+            .box:hover {
+                border-color: var(--main-color);
+                box-shadow: 0 15px 35px rgba(5, 180, 255, 0.2);
+            }
+
+            .s-icons {
+                position: relative;
+                z-index: 2;
+                margin-bottom: 1.5rem;
+            }
+
+            .s-icons i {
+                color: var(--main-color);
+                font-size: 2.5rem;
+                transition: all 0.3s ease;
                 display: inline-block;
             }
 
+            .box:hover .s-icons i {
+                transform: scale(1.1) rotateY(360deg);
+                color: var(--text-color);
+                text-shadow: 0 0 20px var(--main-color);
+            }
+
+            .box h3 {
+                position: relative;
+                z-index: 2;
+                transition: color 0.3s ease;
+            }
+
+            .box:hover h3 {
+                color: var(--main-color);
+            }
+
+            .box p {
+                position: relative;
+                z-index: 2;
+                transition: color 0.3s ease;
+            }
+
+            .box:hover p {
+                color: var(--text-color);
+            }
+
+            .box .btn {
+                position: relative;
+                z-index: 2;
+                margin-top: 1rem;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                transition: all 0.3s ease;
+                overflow: hidden;
+            }
+
+            .box .btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+                transition: left 0.5s;
+            }
+
+            .box .btn:hover::before {
+                left: 100%;
+            }
+
+            .box .btn::after {
+                content: '→';
+                transition: transform 0.3s ease;
+            }
+
+            .box .btn:hover::after {
+                transform: translateX(3px);
+            }
+
+            /* No Services Found */
+            .no-services {
+                grid-column: 1 / -1;
+                text-align: center;
+                color: var(--second-color);
+                font-size: var(--p-font);
+                padding: 3rem;
+                background: var(--bg-color);
+                border-radius: 12px;
+                border: 1px solid rgba(5, 180, 255, 0.1);
+                position: relative;
+                z-index: 2;
+            }
+
+            .no-services::before {
+                content: '🔧';
+                display: block;
+                font-size: 3rem;
+                margin-bottom: 1rem;
+                opacity: 0.5;
+            }
+
+            /* Enhanced Pagination */
+            .center {
+                text-align: center;
+                margin-top: 3rem;
+                position: relative;
+                z-index: 2;
+            }
+
+            .pagination {
+                display: inline-flex;
+                background: var(--bg-color);
+                border-radius: 12px;
+                padding: 0.5rem;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+                border: 1px solid rgba(5, 180, 255, 0.2);
+            }
+
             .pagination a {
-                color: white;
-                float: left;
-                padding: 8px 16px;
+                color: var(--second-color);
+                padding: 0.8rem 1.2rem;
                 text-decoration: none;
-                transition: background-color 0.3s;
-                border: 1px solid #ddd;
-                margin: 0 4px;
-                border-radius: 4px;
+                border-radius: 8px;
+                margin: 0 0.2rem;
+                transition: all 0.3s ease;
+                font-weight: 500;
+                font-family: "Poppins", sans-serif;
+                position: relative;
+                overflow: hidden;
+                float: none;
+                border: none;
+            }
+
+            .pagination a::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(5, 180, 255, 0.1), transparent);
+                transition: left 0.3s;
+            }
+
+            .pagination a:hover::before {
+                left: 100%;
             }
 
             .pagination a.active {
-                background-color: #05b4ff;
-                color: black;
-                border: 1px solid #05b4ff;
+                background: var(--main-color);
+                color: var(--text-color);
+                box-shadow: 0 4px 15px rgba(5, 180, 255, 0.3);
             }
 
             .pagination a:hover:not(.active) {
-                background-color: #ddd;
-                color: black;
+                background: rgba(5, 180, 255, 0.1);
+                color: var(--main-color);
+                transform: translateY(-1px);
             }
 
-            /* Search Bar Styling */
-            form {
-                display: flex;
-                justify-content: center;
-                margin: 20px 0;
+            /* Floating service icons */
+            .floating-icons {
+                position: absolute;
+                font-size: 1.5rem;
+                color: rgba(5, 180, 255, 0.1);
+                pointer-events: none;
+                animation: floatIcons 20s linear infinite;
             }
 
-            form input[type="text"] {
-                padding: 10px;
-                width: 250px;
-                border-radius: 6px 0 0 6px;
-                border: 1px solid #ccc;
-                outline: none;
+            .floating-icons:nth-child(1) {
+                top: 15%;
+                left: 8%;
+                animation-delay: 0s;
             }
 
-            form input[type="submit"] {
-                padding: 10px 20px;
-                background: linear-gradient(to right, #00c6ff, #0072ff);
-                color: white;
-                border: none;
-                border-radius: 0 6px 6px 0;
-                font-weight: 600;
-                cursor: pointer;
-                transition: 0.3s ease;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            .floating-icons:nth-child(2) {
+                top: 70%;
+                left: 90%;
+                animation-delay: 7s;
             }
 
-            form input[type="submit"]:hover {
-                background: linear-gradient(to right, #0072ff, #00c6ff);
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            .floating-icons:nth-child(3) {
+                top: 40%;
+                left: 85%;
+                animation-delay: 14s;
+            }
+
+            @keyframes floatIcons {
+                0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.1; }
+                50% { transform: translateY(-15px) rotate(180deg); opacity: 0.2; }
+            }
+
+            /* Mobile Responsiveness */
+            @media (max-width: 768px) {
+                .search-form input[type="text"] {
+                    width: 200px;
+                    padding: 0.8rem 1rem;
+                }
+
+                .search-form input[type="submit"] {
+                    padding: 0.8rem 1.5rem;
+                }
+
+                .pagination {
+                    flex-wrap: wrap;
+                    gap: 0.2rem;
+                }
+
+                .pagination a {
+                    padding: 0.6rem 0.8rem;
+                    font-size: 0.9rem;
+                }
+
+                .s-icons i {
+                    font-size: 2rem;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .search-container {
+                    padding: 0 1rem;
+                }
+
+                .search-form {
+                    width: 100%;
+                    max-width: 300px;
+                }
+
+                .search-form input[type="text"] {
+                    width: 60%;
+                }
+
+                .search-form input[type="submit"] {
+                    width: 40%;
+                }
+
+                .box {
+                    padding: 2rem 1.5rem;
+                }
             }
         </style>
     </head>
     <body>
 
-    <!------------Services section------->
+    <!------------Enhanced Services section------->
     <section class="services" id="services">
+        <!-- Floating service icons -->
+        <div class="floating-icons">⚙️</div>
+        <div class="floating-icons">🎨</div>
+        <div class="floating-icons">💡</div>
+
         <div class="main-text">
-            <h2><span>My</span>Services</h2>
+            <h2><span>My</span> Services</h2>
+            <br>
         </div>
 
-        <!-- Searching the services -->
-        <form method="get">
-            <input type="text" name="servicename" value="{{ request.GET.servicename }}">
-            <input type="submit" value="Search">
-        </form>
+        <!-- Enhanced Search -->
+        <div class="search-container">
+            <form method="get" class="search-form">
+                <input type="text" name="servicename" value="{{ request.GET.servicename }}" placeholder="Search services...">
+                <input type="submit" value="Search">
+            </form>
+        </div>
 
         <div class="services-content">
             {% for n in servicesData %}
@@ -93,29 +416,31 @@
                 <a href="#" class="btn">Read more</a>
             </div>
             {% empty %}
-            <div>No Services Found</div>
+            <div class="no-services">
+                <p>No services found matching your search.</p>
+            </div>
             {% endfor %}
+        </div>
+
+        <!-- Enhanced Pagination -->
+        <div class="center">
+            <div class="pagination">
+                {% if servicesData.has_previous %}
+                <a href="/services/?page=1">First</a>
+                <a href="/services/?page={{ servicesData.previous_page_number }}">Previous</a>
+                {% endif %}
+
+                {% for n in totalPagelist %}
+                <a href="/services/?page={{ n }}" class="{% if servicesData.number == n %}active{% endif %}">{{ n }}</a>
+                {% endfor %}
+
+                {% if servicesData.has_next %}
+                <a href="/services/?page={{ servicesData.next_page_number }}">Next</a>
+                <a href="/services/?page={{ lastpage }}">Last</a>
+                {% endif %}
+            </div>
         </div>
     </section>
-
-    <!-- Pagination Concept -->
-    <div class="center">
-        <div class="pagination">
-            {% if servicesData.has_previous %}
-            <a href="/services/?page=1">First</a>
-            <a href="/services/?page={{ servicesData.previous_page_number }}">Previous</a>
-            {% endif %}
-
-            {% for n in totalPagelist %}
-            <a href="/services/?page={{ n }}" class="{% if servicesData.number == n %}active{% endif %}">{{ n }}</a>
-            {% endfor %}
-
-            {% if servicesData.has_next %}
-            <a href="/services/?page={{ servicesData.next_page_number }}">Next</a>
-            <a href="/services/?page={{ lastpage }}">Last</a>
-            {% endif %}
-        </div>
-    </div>
     </body>
 </html>
 {% endblock %}

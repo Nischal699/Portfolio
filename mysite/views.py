@@ -84,27 +84,44 @@ def services(request):
     }
     return render(request,"services.html",data)
 
+from django.core.mail import EmailMultiAlternatives
+
 def saveEnquiry(request):
-    n=''
-    if request.method=="POST":
-        name=request.POST.get('name')
-        email=request.POST.get('email')
-        phone=request.POST.get('phone')
-        message=request.POST.get('message')
-        
-        en=contactEnquiry(name=name,email=email,phone=phone,message=message)
+    n = ''
+    if request.method == "POST":
+        name = request.POST.get('name')
+        email = request.POST.get('email')   # user email
+        phone = request.POST.get('phone')
+        message = request.POST.get('message')
+
+        # save to DB
+        en = contactEnquiry(name=name, email=email, phone=phone, message=message)
         en.save()
-        n='Data Inserted'
-        
-        subject='Thanking You'
-        from_email='xenobaka2@gmail.com'
-        msg='<h1>Welcome to <b>My website</b></h1><p>Thank you for using my website ! I have got your message and I will look for it .<p>'
-        to='nischal123321@gmail.com'
-        msg=EmailMultiAlternatives(subject,msg,from_email,[to])
-        msg.content_subtype='html'
-        msg.send()
-        
-    return render(request,"contact.html")
+        n = 'Data Inserted'
+
+        # -------------------
+        # 1. Send notification to YOU
+        # -------------------
+        subject = f'New Contact Enquiry from {name}'
+        from_email = 'nischal123321@gmail.com'
+        msg = f"<h2>New enquiry received</h2><p><b>Name:</b> {name}</p><p><b>Email:</b> {email}</p><p><b>Phone:</b> {phone}</p><p><b>Message:</b> {message}</p>"
+
+        notify = EmailMultiAlternatives(subject, msg, from_email, ['your_email@gmail.com'])
+        notify.content_subtype = 'html'
+        notify.send()
+
+        # -------------------
+        # 2. Send auto-reply to USER
+        # -------------------
+        subject_user = 'Thank you for contacting me!'
+        msg_user = "<h1>Welcome to <b>My website</b></h1><p>Thank you for your message! I will get back to you soon.</p>"
+
+        reply = EmailMultiAlternatives(subject_user, msg_user, from_email, [email])
+        reply.content_subtype = 'html'
+        reply.send()
+
+    return render(request, "contact.html", {'n': n})
+
 
 def contact(request):
     data={
